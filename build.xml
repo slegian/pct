@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <project name="PCT" default="dist" xmlns:if="ant:if" xmlns:unless="ant:unless">
 
+<!--
+  Run
+    ant classDoc
+    ant
+-->
+
   <property environment="env" />
 
   <!-- If DLC11 and DLC2 are provided as properties, then skip loading properties from file -->
@@ -11,7 +17,7 @@
     </and>
   </condition>
 
-  <property name="pct.release" value="DEV" />
+  <property name="pct.release" value="228" />
   <property name="pct.version.string" value="pct-${pct.release}-${env.BRANCH_NAME}-${GIT_COMMIT}" />
 
   <!-- Some directories definitions -->

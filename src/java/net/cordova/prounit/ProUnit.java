@@ -37,6 +37,7 @@ public class ProUnit extends PCTRun {
     private File result;
     private String template;
     private boolean compatibility = false;
+    private boolean verbose = false;
 
     /**
      * Path to the XML file saved using ProUnit GUI version.
@@ -72,6 +73,15 @@ public class ProUnit extends PCTRun {
         this.compatibility = compatibility;
     }
 
+    /**
+     * Turns on the verbose mode
+     * 
+     * @param verbose Optional, defaults to false
+     */
+    public void setVerbose(boolean verbose) {
+        this.verbose = verbose;
+    }
+
     @Override
     public void execute() {
         // This parameter is mandatory (to get a return-value)
@@ -91,6 +101,10 @@ public class ProUnit extends PCTRun {
 
         if (template != null) {
             sb.append(" -resultTemplate=").append(template);
+        }
+
+        if (verbose) {
+            sb.append(" -verbose=true");
         }
 
         // Use a different procedure for older versions of prounit

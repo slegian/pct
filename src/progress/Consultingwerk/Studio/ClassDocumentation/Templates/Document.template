@@ -281,6 +281,5 @@
     <br>
     <br>
     @DETAILPROPERTYCOMMENTTAGCLOSE@
-    <font class="footer_timestamp">@TIMESTAMP@</font>
     </BODY>
 </HTML>
