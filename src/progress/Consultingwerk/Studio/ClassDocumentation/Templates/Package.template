@@ -53,8 +53,5 @@
             @PACKAGEGROUPS@
         </div>
     </div>
-    <div id="packagefooter">
-        <font class="footer_timestamp">@TIMESTAMP@</font>
-    </div>
 </BODY>
 </HTML>
