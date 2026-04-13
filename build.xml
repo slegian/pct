@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <project name="PCT" default="dist" xmlns:if="ant:if" xmlns:unless="ant:unless">
 
+<!--
+  Run
+    ant classDoc
+    ant
+-->
+
   <property environment="env" />
 
   <!-- If DLC11 and DLC2 are provided as properties, then skip loading properties from file -->
@@ -11,7 +17,7 @@
     </and>
   </condition>
 
-  <property name="pct.release" value="DEV" />
+  <property name="pct.release" value="231" />
   <property name="pct.version.string" value="pct-${pct.release}-${env.BRANCH_NAME}-${GIT_COMMIT}" />
 
   <!-- Some directories definitions -->
@@ -244,7 +250,7 @@
       </propath>
       <PCTRunOption name="-cprcodeout" value="undefined" />
     </bootstrapCompile>
-
+<!--
     <mkdir dir="${build-win-v12-netcore}" />
     <bootstrapCompile destdir="${build-win-v12-netcore}" md5="true" minSize="false" graphicalMode="false" dlcHome="${DLC12}" cpstream="iso8859-1" debugListing="true" listing="true" relativePaths="true" requireFullNames="true" requireFieldQualifiers="true" if:true="${dlc.v12.present}">
       <fileset refid="fs.classDoc" />
@@ -273,13 +279,15 @@
       <PCTRunOption name="-clrnetcore" />
       <PCTRunOption name="-cprcodeout" value="undefined" />
     </bootstrapCompile>
-
+-->
     <zip destFile="${dist}/classDoc.zip">
       <zipfileset dir="${build-win-v11}" prefix="v11" includes="**/*.r" />
       <zipfileset dir="${build-win-v12}" prefix="v12" includes="**/*.r" />
+<!--
       <zipfileset dir="${build-win-v12-netcore}" prefix="v12-netcore" includes="**/*.r" />
       <zipfileset dir="${build-win-v13}" prefix="v13" includes="**/*.r" />
       <zipfileset dir="${build-win-v13-netcore}" prefix="v13-netcore" includes="**/*.r" />
+-->
     </zip>
   </target>
 
@@ -303,9 +311,11 @@
     <mkdir dir="classDocTemp" />
     <mkdir dir="classDocTemp/v11" />
     <mkdir dir="classDocTemp/v12" />
+<!--
     <mkdir dir="classDocTemp/v12-netcore" />
     <mkdir dir="classDocTemp/v13" />
     <mkdir dir="classDocTemp/v13-netcore" />
+-->
 
     <copy todir="classDocTemp" overwrite="true">
       <zipfileset src="dist/classDoc.zip" />
@@ -318,6 +328,7 @@
     <bootstrapLibrary destfile="${build}/pct12.pl" dlcHome="${DLC12}" encoding="undefined" if:true="${dlc.v12.present}">
       <fileset dir="classDocTemp/v12" includes="**/*.r" />
     </bootstrapLibrary>
+<!--
     <bootstrapLibrary destfile="${build}/pct12-netcore.pl" dlcHome="${DLC12}" encoding="undefined" if:true="${dlc.v12.present}">
       <fileset dir="classDocTemp/v12-netcore" includes="**/*.r" />
     </bootstrapLibrary>
@@ -327,7 +338,7 @@
     <bootstrapLibrary destfile="${build}/pct13-netcore.pl" dlcHome="${DLC12}" encoding="undefined" if:true="${dlc.v12.present}">
       <fileset dir="classDocTemp/v13-netcore" includes="**/*.r" />
     </bootstrapLibrary>
-
+-->
     <delete dir="classDocTemp" />
 
     <zip destfile="${build}/ablduck.zip">
@@ -342,9 +353,11 @@
       <fileset dir="${build}">
         <include name="pct11.pl" />
         <include name="pct12.pl" />
+<!--
         <include name="pct12-netcore.pl" />
         <include name="pct13.pl" />
         <include name="pct13-netcore.pl" />
+-->
         <include name="pct-src.zip" />
       </fileset>
       <zipfileset dir="${build}" includes="ablduck.zip" prefix="za/co/mip/ablduck/resources" />
